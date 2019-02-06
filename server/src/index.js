@@ -19,6 +19,7 @@ const handlerToEngineMap = new Map([
   [handlers.posts.create, engines.posts.create],
   [handlers.posts.retrieve, engines.posts.retrieve],
   [handlers.posts.delete, engines.posts.delete],
+  [handlers.posts.list, engines.posts.list],
 ]);
 
 const app = express();
@@ -38,6 +39,7 @@ app.use(checkEmptyPayload);
 app.use(checkContentTypeIsSet);
 app.use(checkContentTypeIsJson);
 
+// USERS
 app.post(
   '/users',
   injectHandlerDependencies(
@@ -53,6 +55,7 @@ app.get(
   injectHandlerDependencies(handlers.users.retrieve, db, handlerToEngineMap),
 );
 
+// POSTS
 app.post(
   '/posts',
   injectHandlerDependencies(
@@ -66,6 +69,11 @@ app.post(
 app.get(
   '/posts/:postId',
   injectHandlerDependencies(handlers.posts.retrieve, db, handlerToEngineMap),
+);
+
+app.get(
+  '/posts',
+  injectHandlerDependencies(handlers.posts.list, db, handlerToEngineMap),
 );
 
 app.delete(
