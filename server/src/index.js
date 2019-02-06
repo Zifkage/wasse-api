@@ -16,7 +16,8 @@ import db from './models';
 const handlerToEngineMap = new Map([
   [handlers.users.create, engines.users.create],
   [handlers.users.retrieve, engines.users.retrieve],
-  [handlers.posts.create, engines.post.create],
+  [handlers.posts.create, engines.posts.create],
+  [handlers.posts.retrieve, engines.posts.retrieve],
 ]);
 
 const app = express();
@@ -48,12 +49,7 @@ app.post(
 
 app.get(
   '/users/:userId',
-  injectHandlerDependencies(
-    handlers.users.retrieve,
-    db,
-    handlerToEngineMap,
-    generateErrorMessage,
-  ),
+  injectHandlerDependencies(handlers.users.retrieve, db, handlerToEngineMap),
 );
 
 app.post(
@@ -64,6 +60,11 @@ app.post(
     handlerToEngineMap,
     generateErrorMessage,
   ),
+);
+
+app.get(
+  '/posts/:postId',
+  injectHandlerDependencies(handlers.posts.retrieve, db, handlerToEngineMap),
 );
 
 app.use(handlers.errorHandler);

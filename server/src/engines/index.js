@@ -3,7 +3,7 @@ import usersEngine from './users';
 
 const engines = {
   users: usersEngine,
-  post: postsEngine,
+  posts: postsEngine,
 };
 
 export default engines;
