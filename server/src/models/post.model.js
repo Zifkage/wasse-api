@@ -10,6 +10,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: [true, "The 'body' field is required"],
   },
+  createAt: {
+    type: Number,
+    default: Date.now,
+  },
 });
 
 export default mongoose.model('Post', PostSchema);
