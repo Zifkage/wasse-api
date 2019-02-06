@@ -18,6 +18,7 @@ const handlerToEngineMap = new Map([
   [handlers.users.retrieve, engines.users.retrieve],
   [handlers.posts.create, engines.posts.create],
   [handlers.posts.retrieve, engines.posts.retrieve],
+  [handlers.posts.delete, engines.posts.delete],
 ]);
 
 const app = express();
@@ -65,6 +66,11 @@ app.post(
 app.get(
   '/posts/:postId',
   injectHandlerDependencies(handlers.posts.retrieve, db, handlerToEngineMap),
+);
+
+app.delete(
+  '/posts',
+  injectHandlerDependencies(handlers.posts.delete, db, handlerToEngineMap),
 );
 
 app.use(handlers.errorHandler);

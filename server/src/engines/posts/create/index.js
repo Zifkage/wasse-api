@@ -1,5 +1,3 @@
-import { userInfo } from 'os';
-
 function create(req, db, generateErrorMessage) {
   let post = new db.Post(req.body);
 
