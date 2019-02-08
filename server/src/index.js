@@ -20,6 +20,7 @@ const handlerToEngineMap = new Map([
   [handlers.posts.retrieve, engines.posts.retrieve],
   [handlers.posts.delete, engines.posts.delete],
   [handlers.posts.list, engines.posts.list],
+  [handlers.auth.login, engines.auth.login],
 ]);
 
 const app = express();
@@ -80,6 +81,19 @@ app.delete(
   '/posts',
   injectHandlerDependencies(handlers.posts.delete, db, handlerToEngineMap),
 );
+
+// AUTH
+app.post(
+  '/login',
+  injectHandlerDependencies(handlers.auth.login, db, handlerToEngineMap),
+);
+
+app.post('/logout', function(req, res) {
+  const token = req.get('cookie');
+  delete db.currentUser[token.split(';')[0]];
+  res.status(200);
+  res.json({ message: 'OK' });
+});
 
 app.use(handlers.errorHandler);
 

@@ -54,6 +54,8 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "lodash.keys": "^4.2.0",
-    "mongoose": "^5.3.13"
+    "mongoose": "^5.3.13",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
 }
