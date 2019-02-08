@@ -1,5 +1,6 @@
 function create(req, db, generateErrorMessage) {
   let post = new db.Post(req.body);
+  post.author = req.get('cookie').split(';')[0];
 
   return new Promise((resolve, reject) => {
     post.save(function(err, post) {
