@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-const ResponseSchema = new Schema({
+const ResponseSchema = new mongoose.Schema({
   author: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: [true, 'The response must be bind to the author'],
   },
@@ -15,12 +15,12 @@ const ResponseSchema = new Schema({
     default: Date.now,
   },
   post: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Post',
     required: [true, 'The response must be bind to a post'],
   },
   solution: {
-    type: Schema.Types.Boolean,
+    type: mongoose.Schema.Types.Boolean,
     default: false,
   },
 });

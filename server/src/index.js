@@ -6,6 +6,7 @@ import cors from 'cors';
 import checkEmptyPayload from './middlewares/check-empty-payload';
 import checkContentTypeIsJson from './middlewares/check-content-type-is-json';
 import checkContentTypeIsSet from './middlewares/check-content-type-is-set';
+import checkUserAuth from './middlewares/check-user-auth';
 import engines from './engines';
 import injectHandlerDependencies from './utils/inject-handler-dependencies';
 import handlers from './handlers';
@@ -59,6 +60,7 @@ app.get(
 // POSTS
 app.post(
   '/posts',
+  checkUserAuth(db),
   injectHandlerDependencies(
     handlers.posts.create,
     db,
