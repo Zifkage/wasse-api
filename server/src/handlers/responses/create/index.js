@@ -2,8 +2,8 @@ function createResponse(req, res, db, create, generateErrorMessage) {
   return create(req, db, generateErrorMessage)
     .then((result) => {
       res.status(201);
-      res.set('Content-Type', 'application/json');
-      res.json(result);
+      res.set('Content-Type', 'text/plain');
+      res.send(result);
     })
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'MongoError') {

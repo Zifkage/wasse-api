@@ -1,16 +1,22 @@
 function create(req, db, generateErrorMessage) {
   return new Promise((resolve, reject) => {
-    const response = new db.Response(req.body);
-    response.author = req.get('cookie').split(';')[0];
-    response.post = req.params.postId;
-    response.save((err, response) => {
-      if (err) {
+    db.Post.findOne({ _id: req.params.postId })
+      .then((post) => {
+        const response = new db.Response(req.body);
+        response.author = db.currentUser[req.get('cookie').split(';')[0]];
+        post.responses.push(response);
+
+        post.save((err) => {
+          if (err) {
+            throw err;
+          }
+          resolve('OK');
+        });
+      })
+      .catch((err) => {
         err.message = generateErrorMessage(err);
         reject(err);
-      }
-
-      resolve(response);
-    });
+      });
   });
 }
 

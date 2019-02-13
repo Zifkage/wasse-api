@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+import User from './user.model';
+import Response from './response.model';
 
 const PostSchema = new mongoose.Schema({
   author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    type: User.schema,
     required: [true, 'The post must be bind to the author'],
   },
   title: {
@@ -15,6 +16,7 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: [true, "The 'body' field is required"],
   },
+  responses: [Response.schema],
   createdAt: {
     type: Number,
     default: Date.now,

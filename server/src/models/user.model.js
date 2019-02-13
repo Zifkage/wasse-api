@@ -6,18 +6,21 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     unique: 'Email already exists',
     match: [/^[\w\.+]+@\w+\.\w+$/, "The 'email' field must be a valid email"],
-    required: [true, "The 'email' field is missing"]
+    required: [true, "The 'email' field is missing"],
   },
   profile: { first: String, last: String, displayName: String },
   password: {
     type: String,
-    required: [true, "The 'password' field is missing"]
+    required: [true, "The 'password' field is missing"],
   },
   createdAt: {
     type: Number,
-    default: Date.now
+    default: Date.now,
   },
-  updatedAt: Number
+  updatedAt: Number,
 });
 
-export default mongoose.model('User', UserSchema);
+export default {
+  model: mongoose.model('User', UserSchema),
+  schema: UserSchema,
+};

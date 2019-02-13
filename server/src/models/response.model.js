@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
+import User from './user.model';
 
 const ResponseSchema = new mongoose.Schema({
   author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    type: User.schema,
     required: [true, 'The response must be bind to the author'],
   },
   body: {
@@ -14,15 +14,13 @@ const ResponseSchema = new mongoose.Schema({
     type: Number,
     default: Date.now,
   },
-  post: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post',
-    required: [true, 'The response must be bind to a post'],
-  },
   solution: {
     type: mongoose.Schema.Types.Boolean,
     default: false,
   },
 });
 
-export default mongoose.model('Response', ResponseSchema);
+export default {
+  model: mongoose.model('Response', ResponseSchema),
+  schema: ResponseSchema,
+};

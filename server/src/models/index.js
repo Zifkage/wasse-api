@@ -3,9 +3,9 @@ import Post from './post.model';
 import Response from './response.model';
 
 const models = {
-  User,
+  User: User.model,
   Post,
-  Response,
+  Response: Response.model,
   currentUser: {},
 };
 
