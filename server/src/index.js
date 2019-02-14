@@ -24,6 +24,7 @@ const handlerToEngineMap = new Map([
   [handlers.auth.login, engines.auth.login],
   [handlers.responses.create, engines.responses.create],
   [handlers.responses.vote, engines.responses.vote],
+  [handlers.posts.vote, engines.posts.vote],
 ]);
 
 const app = express();
@@ -84,6 +85,17 @@ app.get(
 app.delete(
   '/posts',
   injectHandlerDependencies(handlers.posts.delete, db, handlerToEngineMap),
+);
+
+app.post(
+  '/posts/:postId/vote',
+  checkUserAuth(db),
+  injectHandlerDependencies(
+    handlers.posts.vote,
+    db,
+    handlerToEngineMap,
+    generateErrorMessage,
+  ),
 );
 
 // RESPONSE

@@ -3,7 +3,7 @@ function vote(req, db, generateErrorMessage) {
     const user = db.currentUser[req.get('cookie').split(';')[0]];
     db.Post.findOne({ _id: req.params.postId }).then((post) => {
       if (!post) {
-        reject({ type: 'postNotFound' });
+        return reject({ type: 'postNotFound' });
       }
       // Find the the response we want to apply vote
       const response = post.responses.find(
@@ -11,7 +11,7 @@ function vote(req, db, generateErrorMessage) {
       );
 
       if (!response) {
-        reject({ type: 'responseNotFound' });
+        return reject({ type: 'responseNotFound' });
       }
 
       // Find user vote
@@ -21,7 +21,7 @@ function vote(req, db, generateErrorMessage) {
 
       // Checking to avoid a user to vote than once peer response
       if (userVote) {
-        reject({ type: 'alreadyVote' });
+        return reject({ type: 'alreadyVote' });
       }
 
       // The user was not vote before we can save the vote
@@ -29,7 +29,7 @@ function vote(req, db, generateErrorMessage) {
       post.save((err) => {
         if (err) {
           err.message = generateErrorMessage(err);
-          reject(err);
+          return reject(err);
         }
         resolve('OK');
       });
