@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import User from './user.model';
+import Vote from './vote.model';
 
 const ResponseSchema = new mongoose.Schema({
   author: {
@@ -18,6 +19,7 @@ const ResponseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Boolean,
     default: false,
   },
+  votes: [Vote.schema],
 });
 
 export default {

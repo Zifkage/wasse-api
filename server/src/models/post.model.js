@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import User from './user.model';
 import Response from './response.model';
+import Vote from './vote.model';
 
 const PostSchema = new mongoose.Schema({
   author: {
@@ -17,6 +18,7 @@ const PostSchema = new mongoose.Schema({
     required: [true, "The 'body' field is required"],
   },
   responses: [Response.schema],
+  votes: [Vote.schema],
   createdAt: {
     type: Number,
     default: Date.now,

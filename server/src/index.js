@@ -23,6 +23,7 @@ const handlerToEngineMap = new Map([
   [handlers.posts.list, engines.posts.list],
   [handlers.auth.login, engines.auth.login],
   [handlers.responses.create, engines.responses.create],
+  [handlers.responses.vote, engines.responses.vote],
 ]);
 
 const app = express();
@@ -91,6 +92,17 @@ app.post(
   checkUserAuth(db),
   injectHandlerDependencies(
     handlers.responses.create,
+    db,
+    handlerToEngineMap,
+    generateErrorMessage,
+  ),
+);
+
+app.post(
+  '/responses/:postId/:responseId/vote',
+  checkUserAuth(db),
+  injectHandlerDependencies(
+    handlers.responses.vote,
     db,
     handlerToEngineMap,
     generateErrorMessage,
