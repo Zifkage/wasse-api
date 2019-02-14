@@ -27,6 +27,7 @@ const handlerToEngineMap = new Map([
   [handlers.posts.vote, engines.posts.vote],
   [handlers.posts.solve, engines.posts.solve],
   [handlers.workshops.create, engines.workshops.create],
+  [handlers.workshops.retrieve, engines.workshops.retrieve],
 ]);
 
 const app = express();
@@ -138,6 +139,15 @@ app.post(
     db,
     handlerToEngineMap,
     generateErrorMessage,
+  ),
+);
+
+app.get(
+  '/workshops/:workshopId',
+  injectHandlerDependencies(
+    handlers.workshops.retrieve,
+    db,
+    handlerToEngineMap,
   ),
 );
 
