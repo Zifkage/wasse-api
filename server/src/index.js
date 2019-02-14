@@ -26,6 +26,7 @@ const handlerToEngineMap = new Map([
   [handlers.responses.vote, engines.responses.vote],
   [handlers.posts.vote, engines.posts.vote],
   [handlers.posts.solve, engines.posts.solve],
+  [handlers.workshops.create, engines.workshops.create],
 ]);
 
 const app = express();
@@ -122,6 +123,18 @@ app.post(
   checkUserAuth(db),
   injectHandlerDependencies(
     handlers.responses.vote,
+    db,
+    handlerToEngineMap,
+    generateErrorMessage,
+  ),
+);
+
+// WORKSHOP
+app.post(
+  '/workshops',
+  checkUserAuth(db),
+  injectHandlerDependencies(
+    handlers.workshops.create,
     db,
     handlerToEngineMap,
     generateErrorMessage,
