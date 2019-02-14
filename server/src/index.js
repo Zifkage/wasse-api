@@ -25,6 +25,7 @@ const handlerToEngineMap = new Map([
   [handlers.responses.create, engines.responses.create],
   [handlers.responses.vote, engines.responses.vote],
   [handlers.posts.vote, engines.posts.vote],
+  [handlers.posts.solve, engines.posts.solve],
 ]);
 
 const app = express();
@@ -96,6 +97,12 @@ app.post(
     handlerToEngineMap,
     generateErrorMessage,
   ),
+);
+
+app.patch(
+  '/posts/:postId/:responseId/solve',
+  checkUserAuth(db),
+  injectHandlerDependencies(handlers.posts.solve, db, handlerToEngineMap),
 );
 
 // RESPONSE
