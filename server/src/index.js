@@ -28,6 +28,7 @@ const handlerToEngineMap = new Map([
   [handlers.posts.solve, engines.posts.solve],
   [handlers.workshops.create, engines.workshops.create],
   [handlers.workshops.retrieve, engines.workshops.retrieve],
+  [handlers.workshops.participate, engines.workshops.participate],
 ]);
 
 const app = express();
@@ -146,6 +147,16 @@ app.get(
   '/workshops/:workshopId',
   injectHandlerDependencies(
     handlers.workshops.retrieve,
+    db,
+    handlerToEngineMap,
+  ),
+);
+
+app.patch(
+  '/workshops/:workshopId/participate',
+  checkUserAuth(db),
+  injectHandlerDependencies(
+    handlers.workshops.participate,
     db,
     handlerToEngineMap,
   ),
