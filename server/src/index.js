@@ -29,6 +29,7 @@ const handlerToEngineMap = new Map([
   [handlers.workshops.create, engines.workshops.create],
   [handlers.workshops.retrieve, engines.workshops.retrieve],
   [handlers.workshops.participate, engines.workshops.participate],
+  [handlers.workshops.list, engines.workshops.list],
 ]);
 
 const app = express();
@@ -160,6 +161,11 @@ app.patch(
     db,
     handlerToEngineMap,
   ),
+);
+
+app.get(
+  '/workshops',
+  injectHandlerDependencies(handlers.workshops.list, db, handlerToEngineMap),
 );
 
 // AUTH
