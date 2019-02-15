@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Navbar from './components/navbar';
+import { Route } from 'react-router-dom';
 import Home from './components/home';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
 import Workshop from './components/workshop';
-import { Route } from 'react-router-dom';
 
 class App extends Component {
   render() {

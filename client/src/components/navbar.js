@@ -1,27 +1,46 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const navbar = () => {
   return (
     <nav>
       <div className="nav-wrapper blue">
-        <a href="#!" className="brand-logo center">
+        <NavLink to="/" className="brand-logo center">
           Social-Aca
-        </a>
+        </NavLink>
         <ul className="left hide-on-med-and-down">
-          <li className="active">
-            <a href="#">Accueil</a>
+          <li>
+            <NavLink activeClassName="grey" to="/home">
+              Accueil
+            </NavLink>
           </li>
           <li>
-            <a href="#">TD</a>
+            <NavLink activeClassName="grey" to="/workshop">
+              TD
+            </NavLink>
           </li>
           <li>
-            <a href="#">Profile</a>
+            <NavLink activeClassName="grey" to="/profile">
+              Profile
+            </NavLink>
           </li>
           <li>
-            <a className="waves-effect orange  waves-light btn">se connecter</a>
+            <NavLink
+              activeClassName="grey"
+              to="/login"
+              className="waves-effect orange  waves-light btn"
+            >
+              se connecter
+            </NavLink>
           </li>
           <li>
-            <a className="waves-effect green  waves-light btn">s'enregistrer</a>
+            <NavLink
+              activeClassName="grey"
+              to="/register"
+              className="waves-effect green  waves-light btn"
+            >
+              s'enregistrer
+            </NavLink>
           </li>
           <li>
             <a className="waves-effect red  waves-light btn">se deconnecter</a>
