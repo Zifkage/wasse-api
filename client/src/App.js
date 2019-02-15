@@ -4,6 +4,7 @@ import Home from './components/home';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
+import Workshop from './components/workshop';
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
+          <Route path="/workshop" component={Workshop} />
         </div>
       </div>
     );
