@@ -3,6 +3,7 @@ import Navbar from './components/navbar';
 import Home from './components/home';
 import Login from './components/login';
 import Register from './components/register';
+import Profile from './components/profile';
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
         </div>
       </div>
     );
