@@ -8,7 +8,7 @@ class login extends Component {
     },
   };
 
-  onInputCange = ({ target }) => {
+  onInputChange = ({ target }) => {
     switch (target.type) {
       case 'email': {
         this.setState({ form: { email: target.value } });
@@ -33,7 +33,7 @@ class login extends Component {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  onChange={this.onInputCange}
+                  onChange={this.onInputChange}
                   id="email"
                   type="email"
                   className="validate"
@@ -45,7 +45,7 @@ class login extends Component {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  onChange={this.onInputCange}
+                  onChange={this.onInputChange}
                   id="password"
                   type="password"
                   className="validate"
