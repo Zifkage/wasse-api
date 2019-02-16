@@ -43,7 +43,9 @@ const navbar = () => {
             </NavLink>
           </li>
           <li>
-            <a className="waves-effect red  waves-light btn">se déconnecter</a>
+            <button className="waves-effect red  waves-light btn">
+              se déconnecter
+            </button>
           </li>
         </ul>
       </div>

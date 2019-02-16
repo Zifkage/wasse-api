@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as ClientAPI from '../ClientAPI';
 
 class login extends Component {
   state = {
@@ -11,11 +12,15 @@ class login extends Component {
   onInputChange = ({ target }) => {
     switch (target.type) {
       case 'email': {
-        this.setState({ form: { email: target.value } });
+        this.setState({
+          form: { ...this.state.form, email: target.value },
+        });
         break;
       }
       case 'password': {
-        this.setState({ form: { password: target.value } });
+        this.setState({
+          form: { ...this.state.form, password: target.value },
+        });
         break;
       }
       default: {
@@ -24,12 +29,22 @@ class login extends Component {
     }
   };
 
+  onFormSubmit = (e) => {
+    e.preventDefault();
+    ClientAPI.login(this.state.form)
+      .then((response) => {
+        localStorage.setItem('currentUser', response.data);
+        this.props.history.push('/');
+      })
+      .catch((err) => console.log(err));
+  };
+
   render() {
     return (
       <div>
         <h2>Se connecter</h2>
         <div className="row">
-          <form className="col s12">
+          <form onSubmit={this.onFormSubmit} className="col s12">
             <div className="row">
               <div className="input-field col s12">
                 <input
