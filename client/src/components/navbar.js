@@ -10,7 +10,7 @@ const navbar = () => {
         </NavLink>
         <ul className="left hide-on-med-and-down">
           <li>
-            <NavLink activeClassName="grey" to="/home">
+            <NavLink activeClassName="grey" to="/">
               Accueil
             </NavLink>
           </li>
@@ -43,7 +43,7 @@ const navbar = () => {
             </NavLink>
           </li>
           <li>
-            <a className="waves-effect red  waves-light btn">se deconnecter</a>
+            <a className="waves-effect red  waves-light btn">se déconnecter</a>
           </li>
         </ul>
       </div>
