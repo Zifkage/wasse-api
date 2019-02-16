@@ -33,7 +33,7 @@ class login extends Component {
     e.preventDefault();
     ClientAPI.login(this.state.form)
       .then((response) => {
-        localStorage.setItem('currentUser', response.data);
+        localStorage.setItem('currentUser', JSON.stringify(response.data));
         this.props.history.push('/');
       })
       .catch((err) => console.log(err));
