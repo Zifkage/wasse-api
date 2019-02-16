@@ -5,12 +5,12 @@ const navbar = () => {
   return (
     <nav>
       <div className="nav-wrapper blue">
-        <NavLink to="/" className="brand-logo center">
+        <NavLink exact to="/" className="brand-logo center">
           Social-Aca
         </NavLink>
         <ul className="left hide-on-med-and-down">
           <li>
-            <NavLink activeClassName="grey" to="/">
+            <NavLink exact activeClassName="grey" to="/">
               Accueil
             </NavLink>
           </li>
