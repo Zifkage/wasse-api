@@ -1,6 +1,6 @@
 function checkUserAuth(db) {
   return (req, res, next) => {
-    const userId = req.get('cookie').split(';')[0] || 'noId';
+    const userId = req.get('token') || 'noId';
     if (!db.currentUser[userId]) {
       res.status(401);
       res.set('Content-Type', 'application/json');

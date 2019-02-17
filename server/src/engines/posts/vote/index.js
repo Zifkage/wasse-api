@@ -1,5 +1,5 @@
 function vote(req, db, generateErrorMessage) {
-  const user = db.currentUser[req.get('cookie').split(';')[0]];
+  const user = db.currentUser[req.get('token')];
   return new Promise((resolve, reject) => {
     db.Post.findById(req.params.postId).then((post) => {
       if (!post) {

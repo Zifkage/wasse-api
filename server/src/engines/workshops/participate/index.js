@@ -1,6 +1,6 @@
 function participate(req, db) {
   return new Promise((resolve, reject) => {
-    const user = db.currentUser[req.get('cookie').split(';')[0]];
+    const user = db.currentUser[req.get('token')];
     db.Workshop.findById(req.params.workshopId).then((workshop) => {
       if (!workshop) {
         return reject({ type: 'workshopNotFound' });

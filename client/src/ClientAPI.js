@@ -4,20 +4,20 @@ const getUserId = () => {
   return JSON.parse(localStorage.getItem('currentUser'))._id;
 };
 
-const cookieHeader = () => {
+const tokenHeader = () => {
   return {
-    headers: { cookie: getUserId() },
+    headers: { token: getUserId() },
   };
 };
 
 const ax = axios.create({
   baseURL: 'http://localhost:8080',
-  timeout: 1000,
+  timeout: 5000,
 });
 
 // AUTH
 export const logout = () => {
-  return ax.post('/logout', {}, cookieHeader());
+  return ax.post('/logout', {}, tokenHeader());
 };
 
 export const login = (data) => {
@@ -26,7 +26,7 @@ export const login = (data) => {
 
 // POST
 export const createPost = (data) => {
-  return ax.post('/posts', data, cookieHeader());
+  return ax.post('/posts', data, tokenHeader());
 };
 
 export const getPostsList = () => {
@@ -42,29 +42,29 @@ export const deletePost = (postId) => {
 };
 
 export const votePost = (postId, data) => {
-  return ax.post(`/posts/${postId}/vote`, data, cookieHeader());
+  return ax.post(`/posts/${postId}/vote`, data, tokenHeader());
 };
 
 export const solvePost = (postId, responseId) => {
-  return ax.patch(`/posts/${postId}/${responseId}/solve`, {}, cookieHeader());
+  return ax.patch(`/posts/${postId}/${responseId}/solve`, {}, tokenHeader());
 };
 
 // RESPONSE
 export const createResponse = (postId, data) => {
-  return ax.post(`/responses/${postId}`, data, cookieHeader());
+  return ax.post(`/responses/${postId}`, data, tokenHeader());
 };
 
 export const voteResponse = (postId, responseId, data) => {
   return ax.post(
     `/responses/${postId}/${responseId}/vote`,
     data,
-    cookieHeader(),
+    tokenHeader(),
   );
 };
 
 // WORKSHOP
 export const createWorkshop = (data) => {
-  return ax.post('/workshops', data, cookieHeader());
+  return ax.post('/workshops', data, tokenHeader());
 };
 
 export const getWorkshop = (workshopId) => {

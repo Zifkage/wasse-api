@@ -1,9 +1,10 @@
 function create(req, db, generateErrorMessage) {
+  console.log(req.get('token'));
   return new Promise((resolve, reject) => {
     db.Post.findOne({ _id: req.params.postId })
       .then((post) => {
         const response = new db.Response(req.body);
-        response.author = db.currentUser[req.get('cookie').split(';')[0]];
+        response.author = db.currentUser[req.get('token')];
         post.responses.push(response);
 
         post.save((err) => {

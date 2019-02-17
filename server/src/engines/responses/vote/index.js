@@ -1,6 +1,6 @@
 function vote(req, db, generateErrorMessage) {
   return new Promise((resolve, reject) => {
-    const user = db.currentUser[req.get('cookie').split(';')[0]];
+    const user = db.currentUser[req.get('token')];
     db.Post.findOne({ _id: req.params.postId }).then((post) => {
       if (!post) {
         return reject({ type: 'postNotFound' });

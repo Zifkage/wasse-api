@@ -181,8 +181,8 @@ app.post(
 );
 
 app.post('/logout', function(req, res) {
-  const token = req.get('cookie');
-  delete db.currentUser[token.split(';')[0]];
+  const token = req.get('token');
+  delete db.currentUser[token];
   res.status(200);
   res.json({ message: 'OK' });
 });
