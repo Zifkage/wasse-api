@@ -6,6 +6,7 @@ import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
 import Workshop from './components/workshop';
+import PostDetail from './components/postDetail';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
           <Route path="/workshop" component={Workshop} />
+          <Route path="/post/:postId" component={PostDetail} />
         </div>
       </div>
     );

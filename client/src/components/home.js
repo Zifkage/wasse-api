@@ -10,7 +10,6 @@ export default class home extends Component {
 
   componentDidMount() {
     ClientAPI.getPostsList().then((res) => {
-      console.log(res.data);
       this.setState({ posts: res.data });
     });
   }
@@ -19,7 +18,7 @@ export default class home extends Component {
     return (
       <div>
         <h2>Les préoccupations</h2>
-        <PostsList posts={this.state.posts} />
+        <PostsList postNavigable={true} posts={this.state.posts} />
       </div>
     );
   }

@@ -1,11 +1,11 @@
 import React from 'react';
 import Post from './post';
 
-const postsList = ({ posts }) => {
+const postsList = (props) => {
   return (
     <div>
-      {posts.map((p) => (
-        <Post key={p._id} post={p} />
+      {props.posts.map((p) => (
+        <Post navigable={props.postNavigable} key={p._id} post={p} />
       ))}
     </div>
   );
