@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import * as ClientAPI from '../ClientAPI';
 
-const home = () => {
-  return <div>Home</div>;
-};
+import PostsList from './postsList';
 
-export default home;
+export default class home extends Component {
+  state = {
+    posts: [],
+  };
+
+  componentDidMount() {
+    ClientAPI.getPostsList().then((res) => {
+      console.log(res.data);
+      this.setState({ posts: res.data });
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Les préoccupations</h2>
+        <PostsList posts={this.state.posts} />
+      </div>
+    );
+  }
+}
