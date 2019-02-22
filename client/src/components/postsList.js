@@ -5,7 +5,12 @@ const postsList = (props) => {
   return (
     <div>
       {props.posts.map((p) => (
-        <Post navigable={props.postNavigable} key={p._id} post={p} />
+        <Post
+          onVote={props.onVote}
+          navigable={props.postNavigable}
+          key={p._id}
+          post={p}
+        />
       ))}
     </div>
   );

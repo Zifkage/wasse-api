@@ -42,6 +42,46 @@ export default withRouter(
       });
     };
 
+    onVote = (target) => {
+      return (responseId, payload) => {
+        if (target === 'post') {
+          ClientAPI.votePost(this.state.post._id, payload).then((res) => {
+            this.setState({
+              post: {
+                ...this.state.post,
+                votes: [
+                  ...this.state.post.votes,
+                  {
+                    ...payload,
+                    author: JSON.parse(localStorage.getItem('currentUser')),
+                  },
+                ],
+              },
+            });
+          });
+        } else {
+          const newResponses = [...this.state.post.responses];
+          const response = newResponses.find((res) => {
+            return res._id === responseId;
+          });
+          response.votes.push({
+            ...payload,
+            author: JSON.parse(localStorage.getItem('currentUser')),
+          });
+          ClientAPI.voteResponse(this.state.post._id, responseId, payload).then(
+            (res) => {
+              this.setState({
+                post: {
+                  ...this.state.post,
+                  responses: newResponses,
+                },
+              });
+            },
+          );
+        }
+      };
+    };
+
     render() {
       const { post, form, message } = this.state;
       return (
@@ -55,7 +95,7 @@ export default withRouter(
                 <span> {post.author.email}</span>
               </h5>
               <div>
-                <Post post={post} />
+                <Post onVote={this.onVote('post')} post={post} />
               </div>
               <br />
               <br />
@@ -89,7 +129,10 @@ export default withRouter(
                 )}
               </div>
               <br />
-              <PostsList posts={post.responses} />
+              <PostsList
+                onVote={this.onVote('response')}
+                posts={post.responses}
+              />
             </div>
           )}
         </div>

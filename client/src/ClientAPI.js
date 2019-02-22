@@ -46,7 +46,11 @@ export const votePost = (postId, data) => {
 };
 
 export const solvePost = (postId, responseId) => {
-  return ax.patch(`/posts/${postId}/${responseId}/solve`, {}, tokenHeader());
+  return ax.patch(
+    `/posts/${postId}/${responseId}/solve`,
+    {},
+    { ...tokenHeader() },
+  );
 };
 
 // RESPONSE

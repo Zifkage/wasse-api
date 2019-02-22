@@ -2,6 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const post = (props) => {
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+  let userVote = null;
+  if (user) {
+    userVote = props.post.votes.find((v) => {
+      return v.author._id === user._id;
+    });
+  }
+  const upCount = props.post.votes.filter((v) => {
+    return v.type === 'up';
+  }).length;
+  const downCount = props.post.votes.filter((v) => {
+    return v.type === 'down';
+  }).length;
   return (
     <div className="row">
       <div
@@ -26,40 +39,35 @@ const post = (props) => {
                   style={{ color: 'white', display: 'block' }}
                   to={`/post/${props.post._id}`}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer ullamcorper erat sed eleifend pretium. Ut ut felis
-                  laoreet tortor mollis ornare vitae sed ante. Ut a pellentesque
-                  orci. Sed quam elit, faucibus eu nulla et, accumsan venenatis
-                  arcu. Vestibulum molestie lacinia risus et cursus. Nunc
-                  imperdiet justo sapien, eu luctus lacus posuere fermentum. Ut
-                  fermentum leo ut erat tincidunt maximus. Morbi tempus tempus
-                  risus, non accumsan diam vulputate vel. Nunc at sem hendrerit
-                  erat euismod blandit. Sed dignissim risus ut ipsum semper
-                  congue. Aliquam imperdiet scelerisque arcu
+                  {props.post.body}
                 </Link>
               </p>
             ) : (
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                ullamcorper erat sed eleifend pretium. Ut ut felis laoreet
-                tortor mollis ornare vitae sed ante. Ut a pellentesque orci. Sed
-                quam elit, faucibus eu nulla et, accumsan venenatis arcu.
-                Vestibulum molestie lacinia risus et cursus. Nunc imperdiet
-                justo sapien, eu luctus lacus posuere fermentum. Ut fermentum
-                leo ut erat tincidunt maximus. Morbi tempus tempus risus, non
-                accumsan diam vulputate vel. Nunc at sem hendrerit erat euismod
-                blandit. Sed dignissim
-              </p>
+              <p>{props.post.body}</p>
             )}
           </div>
           <button
-            style={{ marginRight: '5px' }}
-            className="waves-effect grey waves-light btn-small"
+            onClick={() => props.onVote(props.post._id, { type: 'up' })}
+            className={`waves-effect ${
+              userVote && userVote.type === 'up' ? 'green' : 'grey'
+            } waves-light btn-small`}
           >
             <i className="material-icons ">arrow_upward</i>
           </button>
-          <button className="waves-effect grey waves-light btn-small">
-            <i className="large material-icons">arrow_downward</i>
+          <button
+            className={`waves-effect ${
+              upCount - downCount > 0 ? 'green' : 'red'
+            }  waves-light btn-small`}
+          >
+            {upCount - downCount}
+          </button>
+          <button
+            onClick={() => props.onVote(props.post._id, { type: 'down' })}
+            className={`waves-effect ${
+              userVote && userVote.type === 'down' ? 'red' : 'grey'
+            } waves-light btn-small`}
+          >
+            <i className="material-icons ">arrow_downward</i>
           </button>
         </div>
       </div>
