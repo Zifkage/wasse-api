@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const post = (props) => {
+  let solution = null;
+  if (props.post.responses) {
+    solution = props.post.responses.find((res) => res.solution);
+  }
   const user = JSON.parse(localStorage.getItem('currentUser'));
   let userVote = null;
   if (user) {
@@ -16,7 +20,7 @@ const post = (props) => {
     return v.type === 'down';
   }).length;
   return (
-    <div className="row">
+    <div>
       <div
         style={{ wordWrap: 'break-word', color: 'white' }}
         className="col s12 m8"
@@ -31,6 +35,7 @@ const post = (props) => {
                 }}
               >
                 {props.post.title}
+                {solution ? '-[Résolu]' : ''}
               </h4>
             </b>
             {props.navigable ? (
@@ -69,6 +74,15 @@ const post = (props) => {
           >
             <i className="material-icons ">arrow_downward</i>
           </button>
+          {props.type === 'response' && props.postAuthor._id === user._id && (
+            <button
+              onClick={() => props.onSolve(props.post._id)}
+              className={`waves-effect ${props.post.solution ? 'blue' : 'grey'}
+              waves-light btn-small`}
+            >
+              <i className="material-icons ">done</i>
+            </button>
+          )}
         </div>
       </div>
     </div>

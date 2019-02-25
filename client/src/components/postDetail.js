@@ -82,8 +82,28 @@ export default withRouter(
       };
     };
 
+    onSolve = (responseId) => {
+      const newResponses = [...this.state.post.responses];
+      const response = newResponses.find((res) => {
+        return res._id === responseId;
+      });
+      response.solution = true;
+      ClientAPI.solvePost(this.state.post._id, responseId).then((res) => {
+        this.setState({
+          post: {
+            ...this.state.post,
+            responses: newResponses,
+          },
+        });
+      });
+    };
+
     render() {
       const { post, form, message } = this.state;
+      let solution = null;
+      if (this.state.post.responses) {
+        solution = this.state.post.responses.find((res) => res.solution);
+      }
       return (
         <div>
           {this.state.isLoading ? (
@@ -96,6 +116,24 @@ export default withRouter(
               </h5>
               <div>
                 <Post onVote={this.onVote('post')} post={post} />
+                {solution && (
+                  <div>
+                    <div
+                      style={{
+                        marginTop: '0',
+                        width: '15px',
+                        height: '90px',
+                        backgroundColor: 'green',
+                      }}
+                    />
+                    <Post
+                      type="response"
+                      onVote={this.onVote('response')}
+                      post={solution}
+                      postAuthor={this.state.post.author}
+                    />
+                  </div>
+                )}
               </div>
               <br />
               <br />
@@ -132,6 +170,9 @@ export default withRouter(
               <PostsList
                 onVote={this.onVote('response')}
                 posts={post.responses}
+                type="response"
+                postAuthor={this.state.post.author}
+                onSolve={this.onSolve}
               />
             </div>
           )}

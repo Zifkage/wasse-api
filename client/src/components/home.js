@@ -40,6 +40,7 @@ export default class home extends Component {
             onVote={this.onVote}
             postNavigable={true}
             posts={this.state.posts}
+            type="post"
           />
         ) || {}}
       </div>
