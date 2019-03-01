@@ -10,27 +10,53 @@ class navbar extends Component {
   render() {
     let currentUser = localStorage.getItem('currentUser');
     if (currentUser) currentUser = JSON.parse(currentUser);
+
     return (
-      <div className="navbar-fixed">
-        <nav>
-          <div className="nav-wrapper blue">
-            <NavLink exact to="/" className="brand-logo center">
-              Social-Aca
-            </NavLink>
-            <ul className="left hide-on-med-and-down">
-              <li>
-                <NavLink exact activeClassName="grey" to="/">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <div className="container">
+          <NavLink exact to="/" className="navbar-brand">
+            Social-Aca
+          </NavLink>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <NavLink
+                  exact
+                  className="nav-link"
+                  activeClassName="active"
+                  to="/"
+                >
                   Accueil
                 </NavLink>
               </li>
-              <li>
-                <NavLink activeClassName="grey" to="/workshop">
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  to="/workshop"
+                >
                   TD
                 </NavLink>
               </li>
+
               {currentUser && (
-                <li>
-                  <NavLink activeClassName="grey" to="/profile">
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/profile"
+                  >
                     Profile-({currentUser.email})
                   </NavLink>
                 </li>
@@ -38,9 +64,9 @@ class navbar extends Component {
               {!currentUser && (
                 <li>
                   <NavLink
-                    activeClassName="grey"
+                    activeClassName="active"
                     to="/login"
-                    className="waves-effect orange  waves-light btn"
+                    className="btn btn-success"
                   >
                     se connecter
                   </NavLink>
@@ -49,9 +75,9 @@ class navbar extends Component {
               {!currentUser && (
                 <li>
                   <NavLink
-                    activeClassName="grey"
+                    activeClassName="active"
                     to="/register"
-                    className="waves-effect green  waves-light btn"
+                    className="btn btn-primary"
                   >
                     s'enregistrer
                   </NavLink>
@@ -61,7 +87,7 @@ class navbar extends Component {
                 <li>
                   <button
                     onClick={(e) => this.onLogout()}
-                    className="waves-effect red  waves-light btn"
+                    className="btn btn-danger"
                   >
                     se déconnecter
                   </button>
@@ -69,8 +95,8 @@ class navbar extends Component {
               )}
             </ul>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     );
   }
 }

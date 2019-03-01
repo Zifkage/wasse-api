@@ -52,29 +52,38 @@ export default class createPost extends Component {
   render() {
     const { form, message } = this.state;
     return (
-      <div>
-        <form onSubmit={this.onFormSubmit}>
-          <div className="input-field col s12">
-            <input
-              onChange={this.onInputChange}
-              name="title"
-              className="validate"
-              placeholder="Titre"
-              value={form.title}
-            />
+      <form onSubmit={this.onFormSubmit}>
+        <div className="form-group">
+          <label htmlFor="exampleFormControlInput1">Titre</label>
+          <input
+            type="text"
+            name="title"
+            className="form-control"
+            id="exampleFormControlInput1"
+            value={form.title}
+            onChange={this.onInputChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleFormControlTextarea1">
+            Description de problème
+          </label>
+          <textarea
+            className="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            onChange={this.onInputChange}
+            name="body"
+            value={form.body}
+          />
+        </div>
+        <button className="btn btn-primary">Poster</button>
+        {message && (
+          <div className="alert alert-warning" role="alert">
+            {message}
           </div>
-          <div className="input-field col s12">
-            <textarea
-              onChange={this.onInputChange}
-              name="body"
-              placeholder="Description du problème"
-              value={form.body}
-            />
-          </div>
-          <button className="btn">Poster</button>
-          {message && <span>{message}</span>}
-        </form>
-      </div>
+        )}
+      </form>
     );
   }
 }

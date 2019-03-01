@@ -7,11 +7,11 @@ const WorkshopSchema = new mongoose.Schema({
     required: [true, 'The workshop must be bind to the author'],
   },
   dateStart: {
-    type: Number,
+    type: String,
     required: [true, "The 'dateStart' field is missing"],
   },
   duration: {
-    type: Number,
+    type: String,
     required: [true, "The 'duration' field is missing"],
   },
   title: {

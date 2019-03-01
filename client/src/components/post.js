@@ -21,69 +21,79 @@ const post = (props) => {
   }).length;
   return (
     <div>
+      <div className="vote">
+        <div
+          onClick={() => props.onVote(props.post._id, { type: 'up' })}
+          className="up"
+        >
+          <i
+            style={{
+              color: userVote && userVote.type === 'up' ? 'green' : 'black',
+              cursor: 'pointer',
+            }}
+            className="fas fa-angle-up"
+          />
+        </div>
+        <div
+          className="count"
+          style={{ color: upCount - downCount > 0 ? 'green' : 'red' }}
+        >
+          {upCount - downCount}
+        </div>
+        <div
+          onClick={() => props.onVote(props.post._id, { type: 'down' })}
+          className="down"
+        >
+          <i
+            style={{
+              color: userVote && userVote.type === 'down' ? 'red' : 'black',
+              cursor: 'pointer',
+            }}
+            className="fas fa-angle-down"
+          />
+        </div>
+      </div>
       <div
-        style={{ wordWrap: 'break-word', color: 'white' }}
-        className="col s12 m8"
-      >
-        <div className="card  darken-1">
-          <div className=" grey  card-content ">
-            <b>
-              <h4
-                style={{
-                  borderBottom: '2px solid orange',
-                  paddingBottom: '5px',
-                }}
+        style={{ background: upCount - downCount > 0 ? 'green' : 'red' }}
+        className="hline"
+      />
+      <div className="post">
+        <img
+          style={{ width: '50px' }}
+          src="/costar.jpg"
+          class="img-thumbnail"
+        />
+        <span>{props.post.author.email}</span>
+        <b>
+          <h4>
+            {props.navigable ? (
+              <Link
+                style={{ color: 'black', display: 'block' }}
+                to={`/post/${props.post._id}`}
               >
                 {props.post.title}
                 {solution ? '-[Résolu]' : ''}
-              </h4>
-            </b>
-            {props.navigable ? (
-              <p>
-                <Link
-                  style={{ color: 'white', display: 'block' }}
-                  to={`/post/${props.post._id}`}
-                >
-                  {props.post.body}
-                </Link>
-              </p>
+              </Link>
             ) : (
-              <p>{props.post.body}</p>
+              <span>
+                {props.post.title}
+                {solution ? '-[Résolu]' : ''}
+              </span>
             )}
-          </div>
+          </h4>
+        </b>
+        {props.navigable ? <p>{props.post.body}</p> : <p>{props.post.body}</p>}
+        {props.type === 'response' && props.postAuthor._id === user._id && (
           <button
-            onClick={() => props.onVote(props.post._id, { type: 'up' })}
-            className={`waves-effect ${
-              userVote && userVote.type === 'up' ? 'green' : 'grey'
-            } waves-light btn-small`}
+            onClick={() => props.onSolve(props.post._id)}
+            className={`btn ${
+              props.post.solution ? 'btn-success' : 'btn-primary'
+            }
+              `}
           >
-            <i className="material-icons ">arrow_upward</i>
+            <i className="fas fa-check " />
           </button>
-          <button
-            className={`waves-effect ${
-              upCount - downCount > 0 ? 'green' : 'red'
-            }  waves-light btn-small`}
-          >
-            {upCount - downCount}
-          </button>
-          <button
-            onClick={() => props.onVote(props.post._id, { type: 'down' })}
-            className={`waves-effect ${
-              userVote && userVote.type === 'down' ? 'red' : 'grey'
-            } waves-light btn-small`}
-          >
-            <i className="material-icons ">arrow_downward</i>
-          </button>
-          {props.type === 'response' && props.postAuthor._id === user._id && (
-            <button
-              onClick={() => props.onSolve(props.post._id)}
-              className={`waves-effect ${props.post.solution ? 'blue' : 'grey'}
-              waves-light btn-small`}
-            >
-              <i className="material-icons ">done</i>
-            </button>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

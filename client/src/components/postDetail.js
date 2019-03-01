@@ -110,22 +110,12 @@ export default withRouter(
             'Chargement'
           ) : (
             <div>
-              <h5>
-                <i className="material-icons medium">account_circle</i>-
-                <span> {post.author.email}</span>
-              </h5>
               <div>
                 <Post onVote={this.onVote('post')} post={post} />
+
                 {solution && (
                   <div>
-                    <div
-                      style={{
-                        marginTop: '0',
-                        width: '15px',
-                        height: '90px',
-                        backgroundColor: 'green',
-                      }}
-                    />
+                    <h4>Solution</h4>
                     <Post
                       type="response"
                       onVote={this.onVote('response')}
@@ -142,27 +132,28 @@ export default withRouter(
                 {this.state.isSending ? (
                   'Envoie en cours...'
                 ) : (
-                  <form onSubmit={this.onSubmit} className="col s12">
-                    <div className="row">
-                      <div className="input-field col s6">
-                        <i className="material-icons prefix">mode_edit</i>
-                        <textarea
-                          placeholder="Entrer votre réponse"
-                          id="icon_prefix2"
-                          className="materialize-textarea"
-                          value={form.body}
-                          onChange={this.onInputChange}
-                        />
-                      </div>
+                  <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                      <label htmlFor="exampleFormControlTextarea1">
+                        Entrer une réponse
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        onChange={this.onInputChange}
+                        name="body"
+                        value={form.body}
+                      />
                     </div>
+                    <button className="btn btn-primary">Poster</button>
                     {message && (
                       <div className="collection">
-                        <span className="collection-item active">
+                        <div className="alert alert-warning" role="alert">
                           {message}
-                        </span>
+                        </div>
                       </div>
                     )}
-                    <button className="btn">envoyer</button>
                   </form>
                 )}
               </div>

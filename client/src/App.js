@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 import Navbar from './components/navbar';
 import { Route } from 'react-router-dom';
 import Home from './components/home';
@@ -13,7 +14,7 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <div className="container">
+        <div style={{ marginTop: '70px' }} className="container">
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

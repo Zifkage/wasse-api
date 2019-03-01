@@ -1,0 +1,37 @@
+.post {
+  display: inline-block;
+  width: 70%;
+  border: 1.5px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  transform: translateY(-50px);
+  margin-top: 60px;
+}
+
+.vote {
+  font-size: 25px;
+  width: 5%;
+  display: inline-block;
+}
+
+.vote .up,
+.vote .down {
+  font-size: 1.7em;
+}
+.vote .count {
+  font-weight: bold;
+  border: 1.5px solid black;
+  padding: 6px 0;
+  border-radius: 50%;
+}
+
+.vote div {
+  text-align: center;
+}
+
+.hline {
+  display: inline-block;
+  height: 10px;
+  width: 8%;
+  transform: translate(0, -70px);
+}
