@@ -76,5 +76,11 @@ export const getWorkshop = (workshopId) => {
 };
 
 export const getWorshopsList = () => {
-  return ax.get('/workshop');
+  return ax.get('/workshops');
+};
+
+// USER
+
+export const getUser = (userId) => {
+  return ax.get(`/users/${userId}`);
 };

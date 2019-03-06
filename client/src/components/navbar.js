@@ -55,7 +55,7 @@ class navbar extends Component {
                   <NavLink
                     className="nav-link"
                     activeClassName="active"
-                    to="/profile"
+                    to={`/profile/${currentUser._id}`}
                   >
                     Profile-({currentUser.email})
                   </NavLink>

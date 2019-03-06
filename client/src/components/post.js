@@ -62,6 +62,7 @@ const post = (props) => {
           style={{ width: '50px' }}
           src="/costar.jpg"
           class="img-thumbnail"
+          alt="costar"
         />
         <span>{props.post.author.email}</span>
         <b>
