@@ -35,3 +35,11 @@
   width: 8%;
   transform: translate(0, -70px);
 }
+
+.wdetail span {
+  margin-right: 15px;
+}
+
+.wdetail span i {
+  margin-right: 5px;
+}

@@ -79,6 +79,10 @@ export const getWorshopsList = () => {
   return ax.get('/workshops');
 };
 
+export const participateWorkshop = (workshopId) => {
+  return ax.patch(`/workshops/${workshopId}/participate`, {}, tokenHeader());
+};
+
 // USER
 
 export const getUser = (userId) => {
