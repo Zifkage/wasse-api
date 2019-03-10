@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import * as ClientAPI from '../ClientAPI';
 
@@ -27,7 +28,7 @@ export default class workshop extends Component {
   };
 
   render() {
-    const { workshop, loc } = this.props;
+    const { workshop, loc, navigable } = this.props;
     const { participants } = this.state;
 
     let currentUser = localStorage.getItem('currentUser');
@@ -50,16 +51,38 @@ export default class workshop extends Component {
             <span>{workshop.author.email}</span>
           </div>
           <div className="card-body text-dark">
-            <h5 className="card-title">{workshop.title}</h5>
-            <p className="card-text">{workshop.description}</p>
-            <div className="wdetail">
+            {navigable ? (
+              <Link
+                style={{
+                  color: 'black',
+                  display: 'block',
+                  textDecoration: 'none',
+                }}
+                to={`/workshop/${workshop._id}`}
+              >
+                <h5 className="card-title">{workshop.title}</h5>
+                <p className="card-text">{workshop.description}</p>
+              </Link>
+            ) : (
+              <div>
+                <h5 className="card-title">{workshop.title}</h5>
+                <p className="card-text">{workshop.description}</p>
+              </div>
+            )}
+
+            <div style={{ marginTop: '50px' }} className="wdetail">
               <span>
-                <i className="far fa-clock" />
+                <i className="fas fa-stopwatch" />
                 {workshop.duration}
               </span>
               <span>
                 <i className="far fa-calendar-alt" />
                 {moment(workshop.dateStart).format('LLLL')}
+              </span>
+              <br />
+              <span>
+                <i className="fas fa-map-marked-alt" />
+                {workshop.location}
               </span>
             </div>
             {currentUser._id !== workshop.author._id && (

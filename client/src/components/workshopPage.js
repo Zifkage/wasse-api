@@ -23,7 +23,7 @@ export default class workshopPage extends Component {
       !this.state.isLoading && (
         <div>
           {this.state.workshops.map((w) => {
-            return <Workshop loc="list" key={w._id} workshop={w} />;
+            return <Workshop navigable loc="list" key={w._id} workshop={w} />;
           })}
         </div>
       )
