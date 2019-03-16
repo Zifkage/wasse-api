@@ -48,7 +48,7 @@ export default class workshop extends Component {
               className="img-thumbnail"
               alt="costar"
             />
-            <span>{workshop.author.email}</span>
+            <span>{workshop.author.name}</span>
           </div>
           <div className="card-body text-dark">
             {navigable ? (
@@ -120,7 +120,7 @@ export default class workshop extends Component {
                     className="img-thumbnail"
                     alt="costar"
                   />
-                  <span>{p.email}</span>
+                  <span>{p.name}</span>
                 </li>
               ))}
             </ul>

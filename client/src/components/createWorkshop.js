@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as ClientAPI from '../ClientAPI';
-import moment from 'moment';
 
 export default class createWorkshop extends Component {
   state = {
@@ -45,6 +44,7 @@ export default class createWorkshop extends Component {
         this.setState({
           form: { ...this.state.form, location: target.value },
         });
+        break;
       }
       default: {
         return;

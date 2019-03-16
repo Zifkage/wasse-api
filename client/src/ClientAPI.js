@@ -88,3 +88,7 @@ export const participateWorkshop = (workshopId) => {
 export const getUser = (userId) => {
   return ax.get(`/users/${userId}`);
 };
+
+export const createUser = (data) => {
+  return ax.post('/users/', data);
+};

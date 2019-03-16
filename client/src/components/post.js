@@ -64,7 +64,7 @@ const post = (props) => {
           className="img-thumbnail"
           alt="costar"
         />
-        <span>{props.post.author.email}</span>
+        <span>{props.post.author.name}</span>
         <b>
           <h4>
             {props.navigable ? (
