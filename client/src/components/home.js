@@ -10,7 +10,6 @@ export default class home extends Component {
 
   componentDidMount() {
     ClientAPI.getPostsList().then((res) => {
-      console.log(res.data[0].votes);
       this.setState({ posts: res.data });
     });
   }
@@ -35,14 +34,14 @@ export default class home extends Component {
     return (
       <div>
         <h2>Les préoccupations</h2>
-        {(
+        {this.state.posts[0] && (
           <PostsList
             onVote={this.onVote}
             postNavigable={true}
             posts={this.state.posts}
             type="post"
           />
-        ) || {}}
+        )}
       </div>
     );
   }

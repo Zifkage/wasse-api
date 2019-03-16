@@ -7,11 +7,13 @@ const UserSchema = new mongoose.Schema({
     match: [/^[\w\.+]+@\w+\.\w+$/, "The 'email' field must be a valid email"],
     required: [true, "The 'email' field is missing"],
   },
-  profile: { first: String, last: String, displayName: String },
   password: {
     type: String,
     required: [true, "The 'password' field is missing"],
   },
+  name: { type: String, required: [true, "The 'name' field is missing"] },
+  contact: { type: String, required: [true, "The 'contact' field is missing"] },
+  bio: { type: String, required: [true, "The 'bio' field is missing"] },
   createdAt: {
     type: Number,
     default: Date.now,
