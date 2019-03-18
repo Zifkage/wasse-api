@@ -4,12 +4,13 @@ const userInfo = ({ user }) => {
   return (
     <div className="card border-primary mb-3">
       <div className="card-header"> {user.name} </div>
-      <div className="card-body text-primary">
-        <h5 className="card-title">Primary card title</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+      <div className="card-body ">
+        <h5 className="card-title">Bio : </h5>
+        <p className="card-text">{user.bio}</p>
+        <h5 className="card-title">Contact : </h5>
+        <p className="card-text">{user.contact}</p>
+        <h5 className="card-title">Email : </h5>
+        <p className="card-text">{user.email}</p>
       </div>
     </div>
   );

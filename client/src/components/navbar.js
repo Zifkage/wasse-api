@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 class navbar extends Component {
   onLogout = () => {
@@ -55,9 +54,9 @@ class navbar extends Component {
                   <NavLink
                     className="nav-link"
                     activeClassName="active"
-                    to={`/profile/${currentUser._id}`}
+                    to={`/viewer/profile/${currentUser._id}`}
                   >
-                    Profile-({currentUser.email})
+                    Profile-({currentUser.name})
                   </NavLink>
                 </li>
               )}
