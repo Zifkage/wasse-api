@@ -36,7 +36,7 @@ export default withRouter(
       ClientAPI.createResponse(post._id, form).then((res) => {
         this.setState({
           isSending: false,
-          message: 'Votre message a été bien envoyé',
+          message: 'Votre reponse a été bien envoyé',
           form: { body: '' },
         });
       });

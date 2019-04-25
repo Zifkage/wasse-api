@@ -31,6 +31,7 @@ const handlerToEngineMap = new Map([
   [handlers.workshops.participate, engines.workshops.participate],
   [handlers.workshops.list, engines.workshops.list],
   [handlers.users.list, engines.users.list],
+  [handlers.users.follow, engines.users.follow],
 ]);
 
 const app = express();
@@ -69,6 +70,12 @@ app.get(
 app.get(
   '/users',
   injectHandlerDependencies(handlers.users.list, db, handlerToEngineMap),
+);
+
+app.post(
+  '/users/follow/:userId',
+  checkUserAuth(db),
+  injectHandlerDependencies(handlers.users.follow, db, handlerToEngineMap),
 );
 
 // POSTS

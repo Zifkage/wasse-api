@@ -92,3 +92,7 @@ export const getUser = (userId) => {
 export const createUser = (data) => {
   return ax.post('/users/', data);
 };
+
+export const followUser = (userId) => {
+  return ax.post(`/users/follow/${userId}`, {}, tokenHeader());
+};

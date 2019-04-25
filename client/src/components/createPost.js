@@ -39,7 +39,7 @@ export default class createPost extends Component {
             title: '',
             body: '',
           },
-          message: 'Problème poster avec succès',
+          message: 'Problème posté avec succès',
         });
       })
       .catch((err) => {

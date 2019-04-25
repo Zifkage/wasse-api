@@ -113,6 +113,7 @@ export default class workshop extends Component {
                 <li
                   className="list-group-item list-group-item-dark"
                   key={p._id}
+                  style={{ marginBottom: '10px' }}
                 >
                   <img
                     style={{ width: '50px' }}
@@ -120,7 +121,9 @@ export default class workshop extends Component {
                     className="img-thumbnail"
                     alt="costar"
                   />
-                  <span>{p.name}</span>
+                  <Link style={{ color: 'black' }} to={`/profile/${p._id}`}>
+                    {p.name}
+                  </Link>{' '}
                 </li>
               ))}
             </ul>

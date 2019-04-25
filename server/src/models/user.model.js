@@ -14,6 +14,8 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: [true, "The 'name' field is missing"] },
   contact: { type: String, required: [true, "The 'contact' field is missing"] },
   bio: { type: String, required: [true, "The 'bio' field is missing"] },
+  followers: [],
+  following: [],
   createdAt: {
     type: Number,
     default: Date.now,

@@ -1,5 +1,4 @@
 function create(req, db, generateErrorMessage) {
-  console.log(req.get('token'));
   return new Promise((resolve, reject) => {
     db.Post.findOne({ _id: req.params.postId })
       .then((post) => {

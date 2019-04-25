@@ -64,7 +64,7 @@ export default class createWorkshop extends Component {
             location: '',
             dateStart: '',
           },
-          message: 'TD poster avec succès',
+          message: 'TD posté avec succès',
         });
       })
       .catch((err) => {
