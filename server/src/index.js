@@ -192,6 +192,6 @@ app.post('/logout', function(req, res) {
 
 app.use(handlers.errorHandler);
 
-app.listen(80, () => {
-  console.log(`Social-Aca API server listening on port 80!`);
+app.listen(8080, () => {
+  console.log(`Social-Aca API server listening on port 8080!`);
 });
