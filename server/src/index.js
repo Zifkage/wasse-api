@@ -51,6 +51,10 @@ app.use(checkEmptyPayload);
 app.use(checkContentTypeIsSet);
 app.use(checkContentTypeIsJson);
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to Wasse Web API!' });
+});
+
 // USERS
 app.post(
   '/users',
