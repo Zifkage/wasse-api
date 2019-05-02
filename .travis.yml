@@ -6,3 +6,16 @@ script:
   - docker build -t zifkage/wasse-server ./server
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push zifkage/wasse-server
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'wasse'
+  env: ' Wasse-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-861430228164'
+  bucket_path: 'wasse'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: '$AWS_SECRET_KEY'

@@ -1,0 +1,26 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "server",
+      "image": "zifkage/multi-server",
+      "hostname": "api",
+      "essential": false,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ],
+      "links": ["mongo"]
+    },
+    {
+      "name": "mongo",
+      "image": "mongo:latest",
+      "hostname": "mongo",
+      "essential": false,
+      "memory": 128
+    }
+  ]
+}
