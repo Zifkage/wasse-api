@@ -31,7 +31,7 @@ const handlerToEngineMap = new Map([
   [handlers.workshops.participate, engines.workshops.participate],
   [handlers.workshops.list, engines.workshops.list],
   [handlers.users.list, engines.users.list],
-  [handlers.users.follow, engines.users.follow],
+  [handlers.users.follow, engines.users.follow]
 ]);
 
 const app = express();
@@ -58,24 +58,24 @@ app.post(
     handlers.users.create,
     db,
     handlerToEngineMap,
-    generateErrorMessage,
-  ),
+    generateErrorMessage
+  )
 );
 
 app.get(
   '/users/:userId',
-  injectHandlerDependencies(handlers.users.retrieve, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.users.retrieve, db, handlerToEngineMap)
 );
 
 app.get(
   '/users',
-  injectHandlerDependencies(handlers.users.list, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.users.list, db, handlerToEngineMap)
 );
 
 app.post(
   '/users/follow/:userId',
   checkUserAuth(db),
-  injectHandlerDependencies(handlers.users.follow, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.users.follow, db, handlerToEngineMap)
 );
 
 // POSTS
@@ -86,23 +86,23 @@ app.post(
     handlers.posts.create,
     db,
     handlerToEngineMap,
-    generateErrorMessage,
-  ),
+    generateErrorMessage
+  )
 );
 
 app.get(
   '/posts/:postId',
-  injectHandlerDependencies(handlers.posts.retrieve, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.posts.retrieve, db, handlerToEngineMap)
 );
 
 app.get(
   '/posts',
-  injectHandlerDependencies(handlers.posts.list, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.posts.list, db, handlerToEngineMap)
 );
 
 app.delete(
   '/posts',
-  injectHandlerDependencies(handlers.posts.delete, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.posts.delete, db, handlerToEngineMap)
 );
 
 app.post(
@@ -112,14 +112,14 @@ app.post(
     handlers.posts.vote,
     db,
     handlerToEngineMap,
-    generateErrorMessage,
-  ),
+    generateErrorMessage
+  )
 );
 
 app.patch(
   '/posts/:postId/:responseId/solve',
   checkUserAuth(db),
-  injectHandlerDependencies(handlers.posts.solve, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.posts.solve, db, handlerToEngineMap)
 );
 
 // RESPONSE
@@ -130,8 +130,8 @@ app.post(
     handlers.responses.create,
     db,
     handlerToEngineMap,
-    generateErrorMessage,
-  ),
+    generateErrorMessage
+  )
 );
 
 app.post(
@@ -141,8 +141,8 @@ app.post(
     handlers.responses.vote,
     db,
     handlerToEngineMap,
-    generateErrorMessage,
-  ),
+    generateErrorMessage
+  )
 );
 
 // WORKSHOP
@@ -153,17 +153,13 @@ app.post(
     handlers.workshops.create,
     db,
     handlerToEngineMap,
-    generateErrorMessage,
-  ),
+    generateErrorMessage
+  )
 );
 
 app.get(
   '/workshops/:workshopId',
-  injectHandlerDependencies(
-    handlers.workshops.retrieve,
-    db,
-    handlerToEngineMap,
-  ),
+  injectHandlerDependencies(handlers.workshops.retrieve, db, handlerToEngineMap)
 );
 
 app.patch(
@@ -172,19 +168,19 @@ app.patch(
   injectHandlerDependencies(
     handlers.workshops.participate,
     db,
-    handlerToEngineMap,
-  ),
+    handlerToEngineMap
+  )
 );
 
 app.get(
   '/workshops',
-  injectHandlerDependencies(handlers.workshops.list, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.workshops.list, db, handlerToEngineMap)
 );
 
 // AUTH
 app.post(
   '/login',
-  injectHandlerDependencies(handlers.auth.login, db, handlerToEngineMap),
+  injectHandlerDependencies(handlers.auth.login, db, handlerToEngineMap)
 );
 
 app.post('/logout', function(req, res) {
@@ -196,8 +192,6 @@ app.post('/logout', function(req, res) {
 
 app.use(handlers.errorHandler);
 
-app.listen(process.env.SERVER_PORT, () => {
-  console.log(
-    `Social-Aca API server listening on port ${process.env.SERVER_PORT}!`,
-  );
+app.listen(8080, () => {
+  console.log(`Social-Aca API server listening on port 8080!`);
 });
