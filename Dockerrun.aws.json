@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "server",
-      "image": "zifkage/multi-server",
+      "image": "zifkage/wasse-server",
       "hostname": "api",
       "essential": true,
       "memory": 128,
