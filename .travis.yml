@@ -1,0 +1,8 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build -t zifkage/wasse-server ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push zifkage/wasse-server

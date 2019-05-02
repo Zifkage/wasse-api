@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo:latest'
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      - MONGODB_HOST=mongodb://mongo:27017/wasse
+      - SERVER_PORT=8080
+    ports:
+      - '80:8080'
